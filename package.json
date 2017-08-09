@@ -16,7 +16,11 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "default": "gulp default",
+    "compress": "gulp compress",
+    "coffee": "gulp coffee",
+    "compile": "gulp compile"
   },
   "dependencies": {
     "gulp-bump": "^1.0.0",

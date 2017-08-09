@@ -31,12 +31,12 @@ gulp.task('concat', function() {
         'build/js/api.js'
     ]
     gulp.src(fileList)
-        .pipe(concat(name + ".js"))
+        .pipe(concat('jquery.atwho' + ".js"))
         .pipe(gulp.dest('build'));
 });
 
 gulp.task('umd', function() {
-  gulp.src('build/' + name + ".js")
+  gulp.src('build/' + 'jquery.atwho' + ".js")
     .pipe(umd({template: "umd.template.js"}))
     .pipe(gulp.dest('build/js'));
 });
@@ -57,19 +57,19 @@ gulp.task("mark", function() {
       ' */',
       ''].join('\n');
 
-    gulp.src('build/js/' + name + '.js')
+    gulp.src('build/js/' + 'jquery.atwho' + '.js')
       .pipe(header(banner, { pkg : pkg, year: (new Date).getFullYear()}))
       .pipe(gulp.dest('dist/js/'))
 });
 
 gulp.task('compress', function() {
-    gulp.src('dist/js/' + name + '.js')
+    gulp.src('dist/js/' + 'jquery.atwho' + '.js')
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('dist/js'));
 
     gulp.src('src/jquery.atwho.css').pipe(gulp.dest('dist/css'))
-    gulp.src('dist/css/' + name + '.css')
+    gulp.src('dist/css/' + 'jquery.atwho' + '.css')
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('dist/css'));

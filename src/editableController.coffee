@@ -108,13 +108,12 @@ class EditableController extends Controller
         .addClass 'atwho-query'
       range.surroundContents $query.get 0
       lastNode = $query.contents().last().get(0)
-      if lastNode
-        if /firefox/i.test navigator.userAgent
-          range.setStart lastNode, lastNode.length
-          range.setEnd lastNode, lastNode.length
-          @_clearRange range
-        else
-          @_setRange 'after', lastNode, range
+      if /firefox/i.test navigator.userAgent
+        range.setStart lastNode, lastNode.length
+        range.setEnd lastNode, lastNode.length
+        @_clearRange range
+      else
+        @_setRange 'after', lastNode, range
 
     return if isString and matched.length < @getOpt('minLen', 0)
 
@@ -158,12 +157,12 @@ class EditableController extends Controller
       .addClass 'atwho-inserted'
       .html content
       .attr 'data-atwho-at-query', "" + data['atwho-at'] + @query.text
-      .attr 'contenteditable', "false"
+      
     if range = @_getRange()
       if @query.el.length
         range.setEndAfter @query.el[0]
       range.collapse false
-      range.insertNode suffixNode = @app.document.createTextNode "" + suffix
+      range.insertNode suffixNode = @app.document.createTextNode "\u00A0" + suffix
       @_setRange 'after', suffixNode, range
     @$inputor.focus() unless @$inputor.is ':focus'
     @$inputor.change()
